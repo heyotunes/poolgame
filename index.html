@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <title>Classic Pool Game</title>
+    <link rel="stylesheet" type="text/css" href="css/game-layout.css" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="assets/sprites/favicon.png"
+    />
+    <script type="module" src="./script/friends.html"></script>
+    <script type="module" src="./authCheck.js"></script>
+    <script type="module" src="./logout.js"></script>
+
+    <script src="script/lib/LAB.min.js"></script>
+    <script>
+      $LAB
+
+        .script("script/system/Keys.js")
+        .wait()
+        .script("script/system/Color.js")
+        .wait()
+        .script("script/geom/Vector2.js")
+        .wait()
+        .script("script/input/ButtonState.js")
+        .wait()
+        .script("script/input/Keyboard.js")
+        .wait()
+        .script("script/input/Mouse.js")
+        .wait()
+        .script("script/Global.js")
+        .wait()
+        .script("script/Canvas2D.js")
+        .wait()
+        .script("script/game_objects/Score.js")
+        .wait()
+        .script("script/game_objects/Ball.js")
+        .wait()
+        .script("script/game_objects/Stick.js")
+        .wait()
+        .script("script/menu/Label.js")
+        .wait()
+        .script("script/menu/Button.js")
+        .wait()
+        .script("script/menu/Menu.js")
+        .wait()
+        .script("script/menu/MainMenu.js")
+        .wait()
+        .script("script/AI/Opponent.js")
+        .wait()
+        .script("script/AI/AIPolicy.js")
+        .wait()
+        .script("script/AI/AITrainer.js")
+        .wait()
+        .script("script/game_objects/Player.js")
+        .wait()
+        .script("script/GamePolicy.js")
+        .wait()
+        .script("script/GameWorld.js")
+        .wait()
+        .script("script/Game.js")
+        .wait()
+        .script("script/Assets.js")
+        .wait(function () {
+          Game.start("gameArea", "screen", 1500, 825);
+        });
+    </script>
+
+    <script type="module">
+      // Import Firebase and Firestore
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+      import {
+        getFirestore,
+        doc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+      import { app } from "./Auth.js";
+
+      // Initialize Firebase services
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // Listen for auth state change to get the user info
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          console.log("User UID:", user.uid); // Log UID to confirm if it matches Firestore document ID
+
+          try {
+            // User is signed in, get the user's info from Firestore
+            const userDocRef = doc(db, "users", user.uid);
+            const userDoc = await getDoc(userDocRef);
+
+            if (userDoc.exists()) {
+              const username = userDoc.data().username;
+
+              // Create a welcome text element and add it to the DOM
+              const welcomeText = document.createElement("h2");
+              welcomeText.textContent = `Welcome, ${username}!`;
+
+              // Add welcome text above the game area
+              document.body.insertBefore(
+                welcomeText,
+                document.getElementById("gameArea")
+              );
+            } else {
+              console.error("No such user document found!");
+              alert("No user profile found. Please contact support.");
+            }
+          } catch (error) {
+            console.error("Error getting user document: ", error);
+            alert("An error occurred while fetching user data.");
+          }
+        } else {
+          // User is not logged in; redirect them to the login page
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+  </head>
+
+  <body style="background-color: red">
+    <button
+      id="logoutButton"
+      style="position: absolute; top: 20px; right: 20px"
+    >
+      Logout
+    </button>
+    <div id="gameArea">
+      <canvas id="screen" width="2000" height="1000"></canvas>
+    </div>
+  </body>
+</html>

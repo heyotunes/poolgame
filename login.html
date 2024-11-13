@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Authentication</title>
+    <link href="STYLES.CSS" rel="stylesheet" />
+    <script type="module" defer src="auth.js"></script>
+    <script type="module" defer src="login.js"></script>
+  </head>
+  <body>
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <form>
+      <h3>Login Here</h3>
+
+      <label for="username">Username</label>
+      <input type="email" placeholder="Email or Phone" id="email" required />
+
+      <label for="password">Password</label>
+      <input type="password" placeholder="Password" id="password" required />
+
+      <button id="submit" type="submit">Log In</button>
+
+      <div class="form">
+        <p>
+          Don't have an account?
+          <span> <a href="register.html">Create Account</a></span>
+        </p>
+      </div>
+    </form>
+  </body>
+</html>

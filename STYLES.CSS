@@ -1,0 +1,149 @@
+/* Basic reset for the form */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.shape {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(#ff512f, #dd2476);
+  top: -50px;
+  left: -50px;
+}
+
+.shape:nth-child(2) {
+  background: linear-gradient(#00c6ff, #0072ff);
+  top: -80px;
+  right: -50px;
+}
+
+form {
+  background: white;
+  width: 320px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border: 1px solid #0072ff;
+}
+
+button {
+  width: 100%;
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.social div {
+  background: #0072ff;
+  color: white;
+  padding: 10px;
+  width: 48%;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.social div i {
+  margin-right: 5px;
+}
+
+.go {
+  background: #dd4b39;
+}
+
+.go:hover {
+  background: #c23321;
+}
+
+.fb {
+  background: #3b5998;
+}
+
+.fb:hover {
+  background: #2d4373;
+}
+
+.form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form p {
+  color: #333;
+}
+
+.form a {
+  color: #0072ff;
+  text-decoration: none;
+}
+
+.form a:hover {
+  text-decoration: underline;
+}

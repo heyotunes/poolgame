@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Lobby</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="lobbyContainer">
+      <h2>Game Lobby</h2>
+      <p id="roomIdDisplay">Room ID: <span id="roomId"></span></p>
+
+      <div id="playersContainer">
+        <h3>Players in the Lobby:</h3>
+        <ul id="playersList"></ul>
+      </div>
+
+      <div id="readyContainer">
+        <button id="readyButton">Ready</button>
+        <p id="readyStatus"></p>
+      </div>
+
+      <div id="startGameContainer">
+        <button id="startGameButton" disabled>Start Game</button>
+      </div>
+
+      <button id="exitLobbyButton">Exit Lobby</button>
+    </div>
+    <script type="module" src="gamelobby.js"></script>
+  </body>
+</html>

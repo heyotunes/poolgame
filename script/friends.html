@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Friends</title>
+    <link rel="stylesheet" href="STYLES.CSS" />
+    <script type="module" src="./friendRequest.js"></script>
+  </head>
+  <body>
+    <h2>Manage Your Friends</h2>
+
+    <div id="friendRequestSection">
+      <button id="sendRequestButton">Send Friend Request</button>
+      <button id="viewFriendListButton">View Friend List</button>
+      <div id="pendingRequestsContainer"></div>
+    </div>
+
+    <script type="module">
+      import {
+        sendFriendRequest,
+        getPendingFriendRequests,
+        acceptFriendRequest,
+        denyFriendRequest,
+      } from "./friendRequest.js";
+
+      // Handle the send friend request button
+      document
+        .getElementById("sendRequestButton")
+        .addEventListener("click", async () => {
+          const targetUsername = prompt(
+            "Enter the username of the person you want to add:"
+          );
+          if (targetUsername) {
+            await sendFriendRequest(targetUsername);
+          }
+        });
+
+      // Handle the view friend list button
+      document
+        .getElementById("viewFriendListButton")
+        .addEventListener("click", () => {
+          // Navigate to friendlist.html page
+          window.location.href = "friendlist.html";
+        });
+
+      // Load pending friend requests on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        getPendingFriendRequests((pendingRequests) => {
+          const pendingRequestsContainer = document.getElementById(
+            "pendingRequestsContainer"
+          );
+
+          if (pendingRequests.length === 0) {
+            pendingRequestsContainer.innerHTML =
+              "<p>No pending friend requests.</p>";
+          } else {
+            pendingRequestsContainer.innerHTML =
+              "<h3>Pending Friend Requests:</h3>";
+
+            pendingRequests.forEach((request) => {
+              const requestElement = document.createElement("div");
+              requestElement.classList.add("request");
+
+              const requestText = document.createElement("p");
+              requestText.textContent = `Friend request from: ${request.senderUsername}`;
+
+              // Accept button
+              const acceptButton = document.createElement("button");
+              acceptButton.textContent = "Accept";
+              acceptButton.addEventListener("click", async () => {
+                await acceptFriendRequest(request.senderUID);
+                requestElement.remove(); // Remove the request from the list
+              });
+
+              // Deny button
+              const denyButton = document.createElement("button");
+              denyButton.textContent = "Deny";
+              denyButton.addEventListener("click", async () => {
+                await denyFriendRequest(request.senderUID);
+                requestElement.remove(); // Remove the request from the list
+              });
+
+              requestElement.appendChild(requestText);
+              requestElement.appendChild(acceptButton);
+              requestElement.appendChild(denyButton);
+
+              pendingRequestsContainer.appendChild(requestElement);
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
