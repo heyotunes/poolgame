@@ -10,6 +10,9 @@
   <body>
     <h2>Manage Your Friends</h2>
 
+    <!-- Back Button -->
+    <button id="backButton">Back</button>
+
     <div id="friendRequestSection">
       <button id="sendRequestButton">Send Friend Request</button>
       <button id="viewFriendListButton">View Friend List</button>
@@ -23,6 +26,12 @@
         acceptFriendRequest,
         denyFriendRequest,
       } from "./friendRequest.js";
+
+      // Handle the Back button functionality
+      document.getElementById("backButton").addEventListener("click", () => {
+        // Go back to the previous page
+        window.history.back();
+      });
 
       // Handle the send friend request button
       document

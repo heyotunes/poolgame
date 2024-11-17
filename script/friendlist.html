@@ -11,6 +11,8 @@
     <script type="module" src="./friendlist.js"></script>
   </head>
   <body>
+    <button id="backButton">Back</button>
+
     <h2>Your Friends</h2>
     <div id="friendListContainer">
       <p>Loading friends...</p>
@@ -22,5 +24,13 @@
         <button class="invite-button">Invite to Play</button>
       </div>
     </template>
+
+    <script type="module">
+      // Handle the Back button functionality
+      document.getElementById("backButton").addEventListener("click", () => {
+        // Go back to the previous page
+        window.history.back();
+      });
+    </script>
   </body>
 </html>

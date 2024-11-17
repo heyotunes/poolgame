@@ -147,3 +147,28 @@ button:hover {
 .form a:hover {
   text-decoration: underline;
 }
+
+/* Back Button Styling */
+/* Back Button Styling */
+/* Back Button Styling */
+#backButton {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Gradient effect */
+  border: none;
+  color: white;
+  padding: 10px 20px; /* Proper button size */
+  font-size: 16px;
+  font-weight: bold;
+  width: 100px;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+  position: absolute; /* Position the button */
+  top: 20px; /* Space from the top */
+  left: 20px; /* Space from the left */
+}
+
+/* Hover effect for the Back Button */
+#backButton:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
